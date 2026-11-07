@@ -1,7 +1,12 @@
 import Downloads from "./Downloads";
 import ThemeToggle from "./ThemeToggle";
-import { REPO_URL, SITE_NAME } from "./config";
+import { DISCORD_URL, REPO_URL, SITE_NAME } from "./config";
 import EglantineLogo from "./assets/logo.png";
+import { FaDiscord, FaGithub } from "react-icons/fa";
+import Status from "./Status";
+import GettingStarted from "./Gettingstarted";
+import Contribute from "./Contribute";
+import Faq from "./FAQ";
 
 // Replace with real, verified claims about the emulator.
 const FACTS: { term: string; detail: string }[] = [
@@ -37,17 +42,24 @@ export default function App() {
           {SITE_NAME}
         </a>
         <nav className="flex items-center gap-6 text-sm font-semibold">
-          <a href="#about" className="hover:text-rose">
+          <a
+            href="#about"
+            className="hover:text-rose transition-all duration-200 hover:-translate-y-0.5"
+          >
             About
           </a>
-          <a href="#download" className="hover:text-rose">
+          <a
+            href="#download"
+            className="hover:text-rose transition-all duration-200 hover:-translate-y-0.5"
+          >
             Download
           </a>
           <a
             href={REPO_URL}
-            className="rounded-full bg-fg px-4 py-2 text-page hover:bg-leaf hover:text-white"
+            className="rounded-full bg-fg px-4 py-2 transition-all flex items-center justify-center gap-1 duration-200 text-page hover:bg-leaf hover:text-white"
           >
-            GitHub
+            <FaGithub />
+            <span className="hidden sm:inline">GitHub</span>
           </a>
           <ThemeToggle />
         </nav>
@@ -63,24 +75,33 @@ export default function App() {
               Eglantine is an open-source Nintendo Switch 2 emulator built on
               Eden. Pick a build, download it and start testing.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-3 lg:flex-nowrap">
               <a
                 href="#download"
-                className="rounded-full bg-rose px-8 py-4 font-semibold text-white transition-transform hover:-translate-y-0.5"
+                className="rounded-full bg-rose px-6 py-3.5 font-semibold whitespace-nowrap text-white transition-transform hover:-translate-y-0.5"
               >
                 Download
               </a>
               <a
                 href={REPO_URL}
-                className="rounded-full border-2 border-fg px-8 py-4 font-semibold hover:bg-fg hover:text-page"
+                className="flex items-center justify-center gap-2 rounded-full border-2 border-fg px-6 py-3.5 font-semibold whitespace-nowrap hover:bg-fg hover:text-page"
               >
+                <FaGithub />
                 View the source
+              </a>
+              <a
+                href={DISCORD_URL}
+                className="flex items-center justify-center gap-2 rounded-full border-2 border-fg px-6 py-3.5 font-semibold whitespace-nowrap hover:bg-fg hover:text-page"
+              >
+                <FaDiscord />
+                Join the Discord
               </a>
             </div>
           </div>
           <img
             alt="Eglantine's logo"
             src={EglantineLogo}
+            fetchPriority="high"
             className="mx-auto w-full max-w-md lg:max-w-none"
           />
         </section>
@@ -101,16 +122,47 @@ export default function App() {
           </dl>
         </section>
 
+        <Status />
+        <GettingStarted />
         <Downloads />
+        <Contribute />
+        <Faq />
       </main>
 
-      <footer className="mx-auto max-w-6xl px-6 py-12 text-sm leading-relaxed text-fg/70">
-        <p className="max-w-[70ch]">
-          Eglantine doesn’t include or distribute games, firmware or encryption
-          keys. You must dump them from a console you own. Eglantine is not
-          affiliated with or endorsed by Nintendo. Nintendo Switch is a
-          trademark of Nintendo.
-        </p>
+      <footer className="border-t border-fg/15">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-12 text-sm leading-relaxed text-fg/70 md:flex-row md:justify-between">
+          <p className="max-w-[60ch]">
+            Eglantine doesn't include or distribute games, firmware or
+            encryption keys. You must dump them from a console you own.
+            Eglantine is not affiliated with or endorsed by Nintendo. Nintendo
+            Switch is a trademark of Nintendo.
+          </p>
+
+          <nav aria-label="Footer" className="flex shrink-0 gap-12">
+            <div className="flex flex-col gap-2">
+              <span className="font-display font-semibold text-fg">
+                Project
+              </span>
+              <a href={REPO_URL} className="hover:text-rose">
+                GitHub
+              </a>
+              <a href={`${REPO_URL}/releases`} className="hover:text-rose">
+                Releases
+              </a>
+              <a href={`${REPO_URL}/issues`} className="hover:text-rose">
+                Report a bug
+              </a>
+            </div>
+            <div className="flex flex-col gap-2">
+              <span className="font-display font-semibold text-fg">
+                Community
+              </span>
+              <a href={DISCORD_URL} className="hover:text-rose">
+                Discord
+              </a>
+            </div>
+          </nav>
+        </div>
       </footer>
     </>
   );

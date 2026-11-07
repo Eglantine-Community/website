@@ -146,10 +146,10 @@ export default function Downloads() {
         <div className="mt-10 min-h-40" aria-live="polite">
           {error && (
             <p>
-              Couldn’t load releases from GitHub.{" "}
+              Couldn't load releases from GitHub.
               <a className="underline" href={`${REPO_URL}/releases`}>
                 Open the releases page
-              </a>{" "}
+              </a>
               instead.
             </p>
           )}
@@ -158,7 +158,7 @@ export default function Downloads() {
           )}
           {releases && !latest && (
             <p>
-              No {CHANNELS.find((c) => c.id === channel)!.label.toLowerCase()}{" "}
+              No {CHANNELS.find((c) => c.id === channel)!.label.toLowerCase()}
               build yet. Try another channel.
             </p>
           )}
@@ -169,7 +169,7 @@ export default function Downloads() {
                   {latest.name || latest.tag_name}
                 </p>
                 <p className="mt-1 text-sm text-petal/70">
-                  Published {fmtDate(latest.published_at)} ·{" "}
+                  Published {fmtDate(latest.published_at)} ·
                   <a className="underline" href={latest.html_url}>
                     Release notes
                   </a>

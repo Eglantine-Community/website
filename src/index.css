@@ -3,8 +3,13 @@
 /* Lets you write dark:... utilities, driven by <html data-theme="dark"> */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-/* Fixed brand colors (same in both themes) */
 @theme {
+  --color-petal: #fcf0f3;
+  --color-ink: #14281e;
+  --color-rose: #d94c7e;
+  --color-leaf: #4e7a57;
+  --color-hip: #e8603c;
+  --color-pollen: #f2b84b;
   --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
 }

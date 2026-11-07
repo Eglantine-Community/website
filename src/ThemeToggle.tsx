@@ -25,7 +25,7 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label={toDark ? "Switch to dark mode" : "Switch to light mode"}
       title={toDark ? "Dark mode" : "Light mode"}
-      className="grid size-9 place-items-center rounded-full border-2 border-fg/30 hover:border-rose hover:text-rose"
+      className="grid size-9 place-items-center rounded-full transition-all duration-200 border-2 border-fg/30 hover:border-rose hover:text-rose"
     >
       {toDark ? (
         <svg
