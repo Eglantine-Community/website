@@ -22,8 +22,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4 # reads "packageManager" from package.json
-        # with:
-        #   version: 10                   # only if package.json has no packageManager field
+        with:
+          version: 10 # only if package.json has no packageManager field
 
       - uses: actions/setup-node@v4
         with:
