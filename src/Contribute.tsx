@@ -4,27 +4,27 @@ const WAYS: { title: string; detail: string; href: string; cta: string }[] = [
   {
     title: "Report a bug",
     detail:
-      "Include your build name, your OS and GPU, the game, and a log. Good reports get fixed faster.",
+      "Include your build name, your OS and GPU, the game, and a log. Good reports get fixed faster. ",
     href: `${REPO_URL}/issues`,
     cta: "Open an issue",
   },
   {
     title: "Test a branch build",
     detail:
-      "Pull requests publish test builds. Try one and say whether it fixes the problem.",
+      "Pull requests publish test builds. Try one and say whether it fixes the problem. ",
     href: "#download",
     cta: "Find branch builds",
   },
   {
     title: "Send a patch",
     detail:
-      "Fork the repository, make your change and open a pull request. Small fixes are welcome.",
+      "Fork the repository, make your change and open a pull request. Small fixes are welcome. ",
     href: `${REPO_URL}/pulls`,
     cta: "See pull requests",
   },
   {
     title: "Talk to us",
-    detail: "Ask questions, share findings and follow what's being worked on.",
+    detail: "Ask questions, share findings and follow what's being worked on. ",
     href: DISCORD_URL,
     cta: "Join the Discord",
   },
