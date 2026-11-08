@@ -17,8 +17,14 @@ export default function App() {
         <header className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-5 sm:gap-6 sm:px-6 sm:py-6">
           <a
             href="#"
-            className="font-display text-xl font-extrabold tracking-tight sm:text-2xl"
+            className="flex items-center gap-2 font-display text-xl font-extrabold tracking-tight sm:gap-2.5 sm:text-2xl"
           >
+            <img
+              src={EglantineLogo}
+              alt=""
+              aria-hidden="true"
+              className="size-7 shrink-0 sm:size-8"
+            />
             {SITE_NAME}
           </a>
           <nav className="flex items-center gap-3 text-sm font-semibold sm:gap-6">

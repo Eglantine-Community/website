@@ -18,11 +18,13 @@
 /* Semantic colors that flip with the theme */
 :root {
   color-scheme: light;
-  --page: #fcf0f3;
+  --page: #f3e2e9;
   --fg: #2b1a24;
   --panel: #f6dfe7;
   --panel-fg: #2b1a24;
-  --logo-bg-opacity: 0.16;
+  --logo-bg-opacity: 0.36;
+  --frost-warm: rgb(255 255 255 / 0.22);
+  --frost-cool: rgb(205 232 255 / 0.16);
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
@@ -30,7 +32,9 @@
   --fg: #f4e7ed;
   --panel: #241820;
   --panel-fg: #fcf0f3;
-  --logo-bg-opacity: 0.2;
+  --logo-bg-opacity: 0.25;
+  --frost-warm: rgb(255 255 255 / 0.06);
+  --frost-cool: rgb(139 183 226 / 0.08);
 }
 
 @theme inline {
@@ -61,6 +65,7 @@
   overflow: hidden;
   pointer-events: none;
   user-select: none;
+  filter: blur(2px) saturate(0.82);
   -webkit-mask-image: radial-gradient(
     ellipse 105% 90% at 50% 45%,
     #000 35%,
@@ -73,6 +78,16 @@
     rgb(0 0 0 / 0.8) 70%,
     transparent 100%
   );
+}
+
+.logo-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, var(--frost-warm), transparent 42%),
+    radial-gradient(ellipse at 72% 18%, var(--frost-cool), transparent 55%);
 }
 
 .logo-lane {
