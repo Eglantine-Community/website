@@ -11,7 +11,7 @@ const KNOWN_ISSUES: string[] = ["AMD GPU Issues", "OOT Performances"];
 
 export default function Status() {
   return (
-    <section id="status" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="status" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
       <div className="border-l-4 border-hip pl-6">
         <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
           Project status
@@ -22,10 +22,10 @@ export default function Status() {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-x-16 gap-y-10 sm:grid-cols-2">
+      <div className="mt-10 grid gap-x-10 gap-y-10 sm:mt-12 md:grid-cols-2 lg:gap-x-16">
         <div>
           <h3 className="font-display text-xl font-semibold">What works</h3>
-          <ul className="mt-3 list-disc space-y-2 pl-5 text-fg/80 marker:text-leaf">
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-fg/80 marker:text-lime">
             {WORKS.map((w) => (
               <li key={w}>{w}</li>
             ))}

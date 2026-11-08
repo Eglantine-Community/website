@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaApple, FaLinux, FaWindows } from "react-icons/fa";
 import { REPO, REPO_URL } from "./config";
 
 type Asset = { name: string; browser_download_url: string; size: number };
@@ -42,6 +43,11 @@ const OS_LABEL: Record<OS, string> = {
   windows: "Windows",
   linux: "Linux (Ubuntu 24.04)",
   macos: "macOS",
+};
+const OS_ICON = {
+  windows: <FaWindows aria-hidden="true" />,
+  linux: <FaLinux aria-hidden="true" />,
+  macos: <FaApple aria-hidden="true" />,
 };
 const OS_MATCH: Record<OS, RegExp> = {
   windows: /win/i,
@@ -98,8 +104,8 @@ export default function Downloads() {
   const older = inChannel.slice(1, channel === "branch" ? 8 : 4);
 
   return (
-    <section id="download" className="bg-ink text-petal">
-      <div className="mx-auto max-w-6xl px-6 py-24">
+    <section id="download" className="bg-panel text-panel-fg">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
         <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
           Download Eglantine
         </h2>
@@ -107,7 +113,7 @@ export default function Downloads() {
         <div
           role="tablist"
           aria-label="Operating system"
-          className="mt-10 flex flex-wrap gap-2"
+          className="mt-8 flex flex-wrap gap-2 sm:mt-10"
         >
           {(Object.keys(OS_LABEL) as OS[]).map((o) => (
             <button
@@ -115,8 +121,9 @@ export default function Downloads() {
               role="tab"
               aria-selected={os === o}
               onClick={() => setOs(o)}
-              className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${os === o ? "bg-rose text-white" : "bg-white/10 hover:bg-white/20"}`}
+              className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors sm:px-5 ${os === o ? "bg-rose text-white" : "bg-panel-fg/10 hover:bg-panel-fg/15"}`}
             >
+              {OS_ICON[o]}
               {OS_LABEL[o]}
             </button>
           ))}
@@ -125,7 +132,7 @@ export default function Downloads() {
         <div
           role="tablist"
           aria-label="Release channel"
-          className="mt-4 flex flex-wrap gap-x-6 gap-y-2 border-b border-white/15"
+          className="mt-4 flex flex-wrap gap-x-4 gap-y-2 border-b border-panel-fg/15 sm:gap-x-6"
         >
           {CHANNELS.map((c) => (
             <button
@@ -133,13 +140,13 @@ export default function Downloads() {
               role="tab"
               aria-selected={channel === c.id}
               onClick={() => setChannel(c.id)}
-              className={`-mb-px border-b-2 pb-3 text-sm font-semibold ${channel === c.id ? "border-pollen text-pollen" : "border-transparent text-petal/70 hover:text-petal"}`}
+              className={`-mb-px border-b-2 pb-3 text-sm font-semibold ${channel === c.id ? "border-rose text-rose" : "border-transparent text-panel-fg/70 hover:text-panel-fg"}`}
             >
               {c.label}
             </button>
           ))}
         </div>
-        <p className="mt-4 text-petal/70">
+        <p className="mt-4 text-panel-fg/70">
           {CHANNELS.find((c) => c.id === channel)!.hint}
         </p>
 
@@ -154,7 +161,7 @@ export default function Downloads() {
             </p>
           )}
           {!error && !releases && (
-            <p className="text-petal/70">Loading releases…</p>
+            <p className="text-panel-fg/70">Loading releases…</p>
           )}
           {releases && !latest && (
             <p>
@@ -163,12 +170,12 @@ export default function Downloads() {
             </p>
           )}
           {latest && (
-            <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="flex flex-wrap items-end justify-between gap-4 sm:gap-6">
               <div>
                 <p className="font-display text-2xl font-semibold">
                   {latest.name || latest.tag_name}
                 </p>
-                <p className="mt-1 text-sm text-petal/70">
+                <p className="mt-1 text-sm text-panel-fg/70">
                   Published {fmtDate(latest.published_at)} ·
                   <a className="underline" href={latest.html_url}>
                     Release notes
@@ -178,14 +185,15 @@ export default function Downloads() {
               {asset ? (
                 <a
                   href={asset.browser_download_url}
-                  className="rounded-full bg-pollen px-8 py-4 font-semibold text-ink transition-transform hover:-translate-y-0.5"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-fg px-8 py-4 font-semibold text-page transition-all duration-200 hover:-translate-y-0.5 hover:bg-rose hover:text-white sm:w-auto"
                 >
-                  Download for {OS_LABEL[os].split(" ")[0]} ({mb(asset.size)})
+                  {OS_ICON[os]}
+                  Download ({mb(asset.size)})
                 </a>
               ) : (
                 <a
                   href={latest.html_url}
-                  className="rounded-full border border-petal/40 px-8 py-4 font-semibold hover:bg-white/10"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-panel-fg/40 px-8 py-4 text-center font-semibold hover:bg-panel-fg/10 sm:w-auto"
                 >
                   No {OS_LABEL[os].split(" ")[0]} file in this release — see all
                   files
@@ -194,13 +202,13 @@ export default function Downloads() {
             </div>
           )}
           {older.length > 0 && (
-            <ul className="mt-10 divide-y divide-white/10 border-t border-white/10 text-sm">
+            <ul className="mt-10 divide-y divide-panel-fg/10 border-t border-panel-fg/10 text-sm">
               {older.map((r) => (
-                <li key={r.id} className="flex justify-between py-3">
+                <li key={r.id} className="flex justify-between gap-4 py-3">
                   <a className="hover:underline" href={r.html_url}>
                     {r.name || r.tag_name}
                   </a>
-                  <span className="text-petal/60">
+                  <span className="shrink-0 text-panel-fg/60">
                     {fmtDate(r.published_at)}
                   </span>
                 </li>

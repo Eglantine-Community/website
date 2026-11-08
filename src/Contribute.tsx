@@ -32,7 +32,7 @@ const WAYS: { title: string; detail: string; href: string; cta: string }[] = [
 
 export default function Contribute() {
   return (
-    <section id="contribute" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="contribute" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
       <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
         Help build Eglantine
       </h2>
@@ -40,9 +40,9 @@ export default function Contribute() {
         You don't need to write code to help. Testing and clear bug reports are
         just as valuable.
       </p>
-      <dl className="mt-12 grid gap-x-16 gap-y-10 sm:grid-cols-2">
+      <dl className="mt-10 grid gap-x-10 gap-y-10 sm:mt-12 md:grid-cols-2 lg:gap-x-16">
         {WAYS.map((w) => (
-          <div key={w.title} className="border-l-4 border-leaf pl-5">
+          <div key={w.title} className="border-l-4 border-berry pl-5">
             <dt className="font-display text-xl font-semibold">{w.title}</dt>
             <dd className="mt-2 max-w-[44ch] leading-relaxed text-fg/80">
               {w.detail}
