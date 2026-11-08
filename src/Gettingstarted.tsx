@@ -21,11 +21,11 @@ const STEPS: { title: string; detail: string }[] = [
 
 export default function GettingStarted() {
   return (
-    <section id="start" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="start" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
       <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
         Getting started
       </h2>
-      <ol className="mt-12 grid gap-x-16 gap-y-10 sm:grid-cols-2">
+      <ol className="mt-10 grid gap-x-10 gap-y-10 sm:mt-12 md:grid-cols-2 lg:gap-x-16">
         {STEPS.map((s, i) => (
           <li key={s.title} className="flex gap-5">
             <span

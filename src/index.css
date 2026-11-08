@@ -5,9 +5,10 @@
 
 @theme {
   --color-petal: #fcf0f3;
-  --color-ink: #14281e;
+  --color-ink: #2b1a24;
   --color-rose: #d94c7e;
-  --color-leaf: #4e7a57;
+  --color-berry: #8b5a76;
+  --color-lime: #45c96b;
   --color-hip: #e8603c;
   --color-pollen: #f2b84b;
   --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
@@ -18,16 +19,18 @@
 :root {
   color-scheme: light;
   --page: #fcf0f3;
-  --fg: #14281e;
-  --panel: #14281e;
-  --panel-fg: #fcf0f3;
+  --fg: #2b1a24;
+  --panel: #f6dfe7;
+  --panel-fg: #2b1a24;
+  --logo-bg-opacity: 0.16;
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --page: #0e1812;
-  --fg: #f3e6ea;
-  --panel: #1a3023;
+  --page: #140f13;
+  --fg: #f4e7ed;
+  --panel: #241820;
   --panel-fg: #fcf0f3;
+  --logo-bg-opacity: 0.2;
 }
 
 @theme inline {
@@ -51,11 +54,94 @@
   }
 }
 
+.logo-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  -webkit-mask-image: radial-gradient(
+    ellipse 105% 90% at 50% 45%,
+    #000 35%,
+    rgb(0 0 0 / 0.8) 70%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 105% 90% at 50% 45%,
+    #000 35%,
+    rgb(0 0 0 / 0.8) 70%,
+    transparent 100%
+  );
+}
+
+.logo-lane {
+  --logo-size: clamp(30px, 4.4vw, 56px);
+  --logo-pitch: calc(var(--logo-size) * 2);
+  --lane-index: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240vmax;
+  height: calc(var(--logo-size) * 2);
+  margin-top: calc(var(--logo-size) * -1);
+  margin-left: -120vmax;
+  translate: 0 var(--lane-offset, 0px);
+  rotate: -37deg;
+  animation: logo-lane-bob var(--lane-bob-duration, 7s) ease-in-out infinite
+    alternate;
+  animation-delay: var(--lane-bob-delay, 0s);
+}
+
+.logo-lane__track {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(100% + var(--logo-pitch));
+  background-image: url("./assets/logo-tile.png");
+  background-repeat: repeat-x;
+  background-position: 0 50%;
+  background-size: var(--logo-pitch) var(--logo-size);
+  opacity: var(--logo-bg-opacity);
+  animation: logo-lane-drift var(--lane-duration, 11s) linear infinite;
+  animation-delay: var(--lane-delay, 0s);
+  will-change: transform;
+}
+
+.logo-lane:nth-child(even) .logo-lane__track {
+  animation-direction: reverse;
+  opacity: calc(var(--logo-bg-opacity) * 0.72);
+}
+
+@keyframes logo-lane-drift {
+  to {
+    transform: translate3d(calc(var(--logo-pitch) * -4), 0, 0);
+  }
+}
+
+@keyframes logo-lane-bob {
+  from {
+    transform: translateY(-7px);
+  }
+  to {
+    transform: translateY(7px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   body {
     transition: none;
+  }
+  .logo-lane,
+  .logo-lane__track {
+    animation: none;
+  }
+}
+
+@media print {
+  .logo-field {
+    display: none;
   }
 }

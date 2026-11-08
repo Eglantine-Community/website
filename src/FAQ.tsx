@@ -31,7 +31,7 @@ const QUESTIONS: { q: string; a: string }[] = [
 
 export default function Faq() {
   return (
-    <section id="faq" className="mx-auto max-w-3xl px-6 py-24">
+    <section id="faq" className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
       <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
         Questions
       </h2>
