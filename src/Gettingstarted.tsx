@@ -10,12 +10,12 @@ const STEPS: { title: string; detail: string }[] = [
   },
   {
     title: "Launch and enjoy",
-    detail: "Enjoy playing Switch 2 games on your pc",
+    detail: "Enjoy playing Switch 2 games on your pc!",
   },
   {
     title: "Report Issues",
     detail:
-      "Something crashes or looks wrong? Help the community ! Open an issue or tell us on Discord, with your build name and a log.",
+      "Something crashes or looks wrong? Help the community! Open an issue or tell us on Discord, with your build name and a log.",
   },
 ];
 
